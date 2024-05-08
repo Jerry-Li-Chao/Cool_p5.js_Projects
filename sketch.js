@@ -117,8 +117,13 @@ class Particle {
     }
 
     update() {
-        if(this.type == 1 || this.type == 2) {
-            
+        if(this.type == 1) {
+            this.p.add(this.v);
+            this.v.limit(1);
+        }
+        else if(this.type == 2) {
+            this.p.add(this.v);
+            this.v.limit(3);
         }
         else {
             this.p.add(this.v);
@@ -225,7 +230,7 @@ class Particle {
                     if(diff.mag() < 200) {
                         if(!other.special) {
                             diff.normalize();
-                            diff.mult(0.16);
+                            diff.mult(0.2);
                             other.a.add(diff);
                         }
                     }
@@ -281,8 +286,8 @@ class Particle {
                 // add a hazy glow around the black hole
                 // dotted circle with golden color
                 noFill();
-                stroke(255, 204, 0, 50); // golden color
-                strokeWeight(1);
+                stroke(255, 204, 0, 75); // golden color
+                strokeWeight(2);
                 let radius = 200;
                 for (let i = 0; i < TWO_PI; i += 0.03) {
                     let x = this.p.x + cos(i) * radius;
@@ -334,8 +339,8 @@ class Particle {
         }
         else {
             if(this.justEjected) {
-                // lerp between white and red, based on timeSinceLastEjection/EjectionStateTimeout
-                let color1 = color(255, 255, 255, 200); // white
+                // lerp between yellow and red, based on timeSinceLastEjection/EjectionStateTimeout
+                let color1 = color(255, 200); // yellow
                 let color2 = this.col;
                 let col = lerpColor(color1, color2, this.timeSinceLastEjection/this.EjectionStateTimeout);
                 fill(col);
