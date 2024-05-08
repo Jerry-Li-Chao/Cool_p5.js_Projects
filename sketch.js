@@ -60,11 +60,13 @@ function draw() {
     }
 }
 function handleStart(e) {
+    console.log("touchstart");
     e.preventDefault(); // Prevent default behavior
     isFist = true;      // Set your flag or trigger behavior
   }
   
   function handleEnd(e) {
+    console.log("touchend");
     e.preventDefault(); // Prevent default behavior
     isFist = false;     // Reset your flag or end behavior
   }
