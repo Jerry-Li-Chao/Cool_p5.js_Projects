@@ -11,11 +11,10 @@ function setup() {
   let cnv = createCanvas(windowWidth * 0.99, windowHeight * 0.99);
 
   // Add event listeners to prevent default behavior
-  cnv.elt.addEventListener('touchstart', preventDefaultBehavior, {passive: false});
-  cnv.elt.addEventListener('touchmove', preventDefaultBehavior, {passive: false});
-  cnv.elt.addEventListener('touchend', preventDefaultBehavior, {passive: false});
-  cnv.elt.addEventListener('mousedown', preventDefaultBehavior);
-  cnv.elt.addEventListener('mousemove', preventDefaultBehavior);
+  cnv.elt.addEventListener('touchstart', handleStart, {passive: false});
+  cnv.elt.addEventListener('touchend', handleEnd, {passive: false});
+  cnv.elt.addEventListener('mousedown', handleStart);
+  cnv.elt.addEventListener('mouseup', handleEnd);
 
   for (let i = 0; i < 200; i++) {
     let p = new Particle(random(width), random(height), false);
@@ -60,14 +59,24 @@ function draw() {
         p.display();
     }
 }
+function handleStart(e) {
+    e.preventDefault(); // Prevent default behavior
+    isFist = true;      // Set your flag or trigger behavior
+  }
+  
+  function handleEnd(e) {
+    e.preventDefault(); // Prevent default behavior
+    isFist = false;     // Reset your flag or end behavior
+  }
 
-function mousePressed() {
-    isFist = true;
-}
 
-function mouseReleased() {
-    isFist = false;
-}
+// function mousePressed() {
+//     isFist = true;
+// }
+
+// function mouseReleased() {
+//     isFist = false;
+// }
 
 
 class Particle {
