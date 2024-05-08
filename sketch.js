@@ -27,10 +27,10 @@ function setup() {
   }
 
 
-//   for (let i = 0; i < 50; i++) {
-//     let nonInteracting = new Particle(random(width), random(height), false, false);
-//     particles.push(nonInteracting);
-//   }
+  for (let i = 0; i < 20; i++) {
+    let nonInteracting = new Particle(random(width), random(height), false, false);
+    particles.push(nonInteracting);
+  }
 
     let blackHoleLocation = createVector(random(width), random(height));    
     let blackHole = new Particle(blackHoleLocation.x, blackHoleLocation.y, false, false, 1);
